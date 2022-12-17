@@ -9,15 +9,23 @@ const routers = [
   {
     path: "/",
     method: HTTPMethod.get,
-    func: (request, response) => {
-      response.send("Hello Hust");
+    func: (request, response, queryData) => {
+      queryData("SELECT * FROM users", (error, rows, fields) => {
+        if (error) {
+          console.log(error.message);
+        } else {
+          response.json(rows);
+        }
+      });
     },
   },
 ];
 
-function routerConfig(app) {
+function routerConfig(app, queryData) {
   routers.forEach((router) => {
-    app[router.method](router.path, router.func);
+    app[router.method](router.path, (request, response) => {
+      router.func(request, response, queryData);
+    });
   });
 }
 
