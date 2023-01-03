@@ -1,7 +1,7 @@
-import alertStyle from "../styles/Alert.module.css";
-import successIcon from "../images/success.png";
-import warningIcon from "../images/warning.png";
-import errorIcon from "../images/error.png";
+import alertStyle from "../../styles/commons/Alert.module.css";
+import successIcon from "../../images/success.png";
+import warningIcon from "../../images/warning.png";
+import errorIcon from "../../images/error.png";
 
 const alertType = {
   success: "success",
@@ -21,7 +21,7 @@ const alertIcon = {
   error: errorIcon,
 };
 
-const style = {
+const styleConfig = {
   show: {
     display: "flex",
   },
@@ -30,13 +30,13 @@ const style = {
   },
 };
 
-export default function Alert(props) {
+function Alert(props) {
   const { show, type, message } = props.alertData;
 
   return (
     <div
       className={`${alertStyle.alert} ${alertStyle[alertClassKey[type]]}`}
-      style={show ? style.show : style.hide}
+      style={show ? styleConfig.show : styleConfig.hide}
     >
       <div className={alertStyle.alertMessage}>{message}</div>
       <img src={alertIcon[type]} alt={type} className={alertStyle.alertIcon} />
@@ -44,4 +44,5 @@ export default function Alert(props) {
   );
 }
 
+export default Alert;
 export { alertType };

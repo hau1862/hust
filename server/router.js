@@ -7,10 +7,11 @@ const HTTPMethod = {
 
 const routers = [
   {
-    path: "/",
+    path: "/users",
     method: HTTPMethod.get,
-    func: (request, response, queryData) => {
-      queryData("SELECT * FROM users", (error, rows, fields) => {
+    query: "SELECT * FROM users",
+    func(request, response, queryData) {
+      queryData(this.query, (error, rows, fields) => {
         if (error) {
           console.log(error.message);
         } else {
@@ -21,10 +22,14 @@ const routers = [
   },
 ];
 
-function routerConfig(app, queryData) {
+function routerConfig(app, queryData, checkConnection) {
   routers.forEach((router) => {
     app[router.method](router.path, (request, response) => {
-      router.func(request, response, queryData);
+      if (checkConnection()) {
+        router.func(request, response, queryData);
+      } else {
+        response.status(400).json({ message: "Connection is disconnected" });
+      }
     });
   });
 }

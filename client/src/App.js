@@ -1,6 +1,7 @@
 import { useState, createContext } from "react";
-import Spinner from "./components/Spinner";
-import Alert, { alertType } from "./components/Alert";
+import Spinner from "./components/commons/Spinner";
+import Alert, { alertType } from "./components/commons/Alert";
+
 const AppContext = createContext();
 
 const sampleAlertData = {
@@ -10,25 +11,23 @@ const sampleAlertData = {
 };
 
 function AppProvider(props) {
-  const [isLoading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [alertData, setAlertData] = useState(sampleAlertData);
 
-  return (
-    <AppContext.Provider
-      value={{
-        toggleLoading() {
-          setLoading(!isLoading);
-        },
-        showAlert(type, message) {
-          setAlertData({ ...sampleAlertData, type, message, show: true });
+  const toggleLoading = function () {
+    setLoading(!loading);
+  };
+  const showAlert = function (type, message) {
+    setAlertData({ ...sampleAlertData, type, message, show: true });
 
-          setTimeout(() => {
-            setAlertData(sampleAlertData);
-          }, 2000);
-        },
-      }}
-    >
-      <Spinner isLoading={isLoading} />
+    setTimeout(() => {
+      setAlertData(sampleAlertData);
+    }, 2000);
+  };
+
+  return (
+    <AppContext.Provider value={{ toggleLoading, showAlert }}>
+      <Spinner loading={loading} />
       <Alert alertData={alertData} />
       {props.children}
     </AppContext.Provider>
