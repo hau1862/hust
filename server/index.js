@@ -1,11 +1,18 @@
 const express = require("express");
-const app = express();
 const { serverPort } = require("./constants");
 const { routerConfig } = require("./router");
-const { queryData } = require("./database");
+const { queryData, connectDatabase, disconnectDatabase, checkConnection } = require("./database");
+const { allowAccessMiddleware } = require("./library");
 
-routerConfig(app, queryData);
+const app = express();
 
-app.listen(serverPort, function () {
-  console.log(`Server is running on http://localhost:${serverPort}`);
-});
+routerConfig(app, queryData, checkConnection);
+
+app.use(allowAccessMiddleware)
+  .on("close", function () {
+    disconnectDatabase();
+  })
+  .listen(serverPort, function () {
+    connectDatabase();
+    console.log(`Server is running on http://localhost:${serverPort}`);
+  });

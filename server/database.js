@@ -7,12 +7,30 @@ const connection = mysql.createConnection({
   database: "hust",
 });
 
-async function queryData(query = "", callback = (error, rows, fields) => {}) {
-  await connection.connect();
-  await connection.query(query, callback);
-  await connection.end();
+const connectionState = {
+  connected: "authenticated",
+  disconnected: "disconnected"
+};
+
+function connectDatabase() {
+  connection.connect();
+}
+
+function disconnectDatabase() {
+  connection.end();
+}
+
+function checkConnection() {
+  return connection.state === connectionState.connected;
+}
+
+function queryData(query = "", callback = (error, rows, fields) => { }) {
+  connection.query(query, callback);
 }
 
 module.exports = {
+  connectDatabase,
+  disconnectDatabase,
+  checkConnection,
   queryData,
 };
