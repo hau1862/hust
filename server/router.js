@@ -1,4 +1,4 @@
-const HTTPMethod = {
+const HttpMethod = {
   get: "get",
   post: "post",
   put: "put",
@@ -7,11 +7,28 @@ const HTTPMethod = {
 
 const routers = [
   {
-    path: "/users",
-    method: HTTPMethod.get,
-    query: "SELECT * FROM users",
+    path: "/api/users/all",
+    method: HttpMethod.get,
     func(request, response, queryData) {
-      queryData(this.query, (error, rows, fields) => {
+      const queryString = "SELECT * FROM users";
+
+      queryData(queryString, (error, rows, fields) => {
+        if (error) {
+          console.log(error.message);
+        } else {
+          response.json(rows);
+        }
+      });
+    },
+  },
+  {
+    path: "/api/users/:id",
+    method: HttpMethod.get,
+    func(request, response, queryData) {
+      const { id } = request.params;
+      const queryString = `SELECT * FROM users WHERE id=${id}`;
+
+      queryData(queryString, (error, rows, fields) => {
         if (error) {
           console.log(error.message);
         } else {
@@ -28,7 +45,9 @@ function routerConfig(app, queryData, checkConnection) {
       if (checkConnection()) {
         router.func(request, response, queryData);
       } else {
-        response.status(400).json({ message: "Connection is disconnected" });
+        request.status(400).json({
+          message: "Connect database failure",
+        });
       }
     });
   });
