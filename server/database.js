@@ -32,7 +32,8 @@ function checkConnection() {
   return connection.state === connectionState.connected;
 }
 
-function queryData(query = "", callback = (error, rows, fields) => {}) {
+
+function queryData(query = "", callback = (error, rows, fields) => { }) {
   connection.query(query, callback);
 }
 
