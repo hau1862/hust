@@ -6,12 +6,12 @@ const HttpMethod = {
 };
 
 const routerBasic = {
-  all(tableNames = "users") {
+  all(tableName = "users") {
     return {
-      path: `/api/${tableNames}/all`,
+      path: `/api/${tableName}/all`,
       method: HttpMethod.get,
       func(request, response, queryData) {
-        const queryString = `SELECT * FROM ${tableNames}`;
+        const queryString = `SELECT * FROM ${tableName}`;
 
         queryData(queryString, (error, rows, fields) => {
           if (error) {
@@ -23,9 +23,9 @@ const routerBasic = {
       },
     };
   },
-  create(tableNames = "users") {
+  create(tableName = "users") {
     return {
-      path: `/api/${tableNames}/create`,
+      path: `/api/${tableName}/create`,
       method: HttpMethod.post,
       func(request, response, queryData) {
         const data = request.body;
@@ -33,7 +33,7 @@ const routerBasic = {
         const values = Object.values(data).map((value) => {
           return (typeof value === "string") ? (`'${value}'`) : value;
         });
-        const queryString = `INSERT INTO ${tableNames}(${keys.join(",")}) VALUES (${values.join(",")})`;
+        const queryString = `INSERT INTO ${tableName}(${keys.join(",")}) VALUES (${values.join(",")})`;
 
         queryData(queryString, (error, rows, fields) => {
           if (error) {
@@ -45,9 +45,9 @@ const routerBasic = {
       },
     };
   },
-  show(tableNames = "users") {
+  show(tableName = "users") {
     return {
-      path: `/api/${tableNames}/:id/show`,
+      path: `/api/${tableName}/:id/show`,
       method: HttpMethod.get,
       func(request, response, queryData) {
         const { id } = request.params;
@@ -63,9 +63,9 @@ const routerBasic = {
       }
     };
   },
-  update(tableNames = "users") {
+  update(tableName = "users") {
     return {
-      path: `/api/${tableNames}/:id/update`,
+      path: `/api/${tableName}/:id/update`,
       method: HttpMethod.put,
       func(request, response, queryData) {
         const { id } = request.params;
@@ -74,7 +74,7 @@ const routerBasic = {
         const values = Object.values(data).map((value) => {
           return (typeof value === "string") ? (`'${value}'`) : value;
         });
-        const queryString = `UPDATE ${tableNames} SET ${keys.map(((key, index) => {
+        const queryString = `UPDATE ${tableName} SET ${keys.map(((key, index) => {
           return `${key}=${values[index]}`;
         })).join(",")} WHERE id=${id}`;
 
@@ -88,13 +88,13 @@ const routerBasic = {
       }
     };
   },
-  delete(tableNames = "users") {
+  delete(tableName = "users") {
     return {
-      path: `/api/${tableNames}/:id/delete`,
+      path: `/api/${tableName}/:id/delete`,
       method: HttpMethod.delete,
       func(request, response, queryData) {
         const { id } = request.params;
-        const queryString = `DELETE FROM ${tableNames} WHERE id=${id}`;
+        const queryString = `DELETE FROM ${tableName} WHERE id=${id}`;
 
         queryData(queryString, (error, rows, fields) => {
           if (error) {
@@ -108,13 +108,17 @@ const routerBasic = {
   }
 };
 
-const routers = [
-  routerBasic.all("users"),
-  routerBasic.create("users"),
-  routerBasic.show("users"),
-  routerBasic.update("users"),
-  routerBasic.delete("users")
-];
+const tableNames = ["accounts", "administrators", "categories", "collections", "customers", "invoices", "orders", "products", "users"];
+
+const routers = tableNames.reduce((accumulate, currentTableName) => {
+  return accumulate.concat([
+    routerBasic.all(currentTableName),
+    routerBasic.create(currentTableName),
+    routerBasic.show(currentTableName),
+    routerBasic.update(currentTableName),
+    routerBasic.delete(currentTableName),
+  ]);
+}, []);
 
 function routerConfig(app, queryData, checkConnection) {
   routers.forEach((router) => {

@@ -6,7 +6,7 @@ use hust;
 
 create table accounts(
   id int primary key auto_increment,
-  username varchar(255) not null,
+  username varchar(255) not null unique,
   password varchar(255) not null
 );
 
