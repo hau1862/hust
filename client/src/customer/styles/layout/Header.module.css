@@ -1,0 +1,48 @@
+.header {
+  height: 100%;
+  padding: 0px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logoContainer {}
+
+.logoImage {
+  height: 40px;
+}
+
+.searchContainer {
+  margin: 0px 60px;
+  flex-grow: 1;
+  min-width: 360px;
+}
+
+.searchForm {
+  display: flex;
+}
+
+.searchInput {
+  flex-grow: 1;
+  padding: 8px;
+  outline: none;
+  border-color: rgb(240, 240, 240);
+  border-style: solid;
+  border-radius: 8px;
+}
+
+.searchSubmit {
+  padding: 6px 16px;
+  border-color: rgb(240, 240, 240);
+  border-style: solid;
+  color: blue;
+  cursor: pointer;
+}
+
+.shortcutContainer {
+  display: flex;
+}
+
+.shortcutItem {
+  margin: 8px;
+}

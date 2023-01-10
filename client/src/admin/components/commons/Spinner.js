@@ -9,7 +9,7 @@ const styleConfig = {
   },
 };
 
-function Spinner(props) {
+export default function Spinner(props) {
   const { loading } = props;
 
   return (
@@ -21,5 +21,3 @@ function Spinner(props) {
     </div>
   );
 }
-
-export default Spinner;

@@ -13,9 +13,9 @@ create table accounts(
 create table users(
   id int primary key auto_increment,
   account_id int not null unique,
-  role enum('customer', 'administrator') not null,
+  role enum('customer', 'admin') not null,
   fullname varchar(255) not null,
-  birthday datetime
+  birthday datetime default current_timestamp
 );
 
 create table customers(
@@ -24,7 +24,7 @@ create table customers(
   address varchar(255)
 );
 
-create table administrators(
+create table admins(
   id int primary key auto_increment,
   user_id int not null unique
 );
@@ -60,6 +60,17 @@ create table product_collection(
   primary key (product_id, collection_id)
 );
 
+create table carts(
+  id int primary key auto_increment,
+  user_id int not null
+);
+
+create table product_cart(
+  product_id int not null,
+  cart_id int not null,
+  primary key (product_id, cart_id)
+);
+
 create table orders(
   id int primary key auto_increment,
   user_id int not null,
@@ -84,13 +95,18 @@ alter table users add foreign key (account_id) references accounts(id);
 
 alter table customers add foreign key (user_id) references users(id);
 
-alter table administrators add foreign key (user_id) references users(id);
+alter table admins add foreign key (user_id) references users(id);
 
 alter table product_category add foreign key (product_id) references products(id);
 alter table product_category add foreign key (category_id) references categories(id);
 
 alter table product_collection add foreign key (product_id) references products(id);
 alter table product_collection add foreign key (collection_id) references collections(id);
+
+alter table carts add foreign key (user_id) references users(id);
+
+alter table product_cart add foreign key (product_id) references products(id);
+alter table product_cart add foreign key (cart_id) references carts(id);
 
 alter table orders add foreign key (user_id) references users(id);
 

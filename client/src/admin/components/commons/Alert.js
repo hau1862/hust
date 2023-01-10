@@ -30,7 +30,7 @@ const styleConfig = {
   },
 };
 
-function Alert(props) {
+export default function Alert(props) {
   const { show, type, message } = props.alertData;
 
   return (
@@ -44,5 +44,4 @@ function Alert(props) {
   );
 }
 
-export default Alert;
 export { alertType };
