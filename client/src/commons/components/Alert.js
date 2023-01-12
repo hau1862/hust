@@ -1,7 +1,7 @@
-import alertStyle from "../../styles/commons/Alert.module.css";
-import successIcon from "../../images/success.png";
-import warningIcon from "../../images/warning.png";
-import errorIcon from "../../images/error.png";
+import alertStyle from "../styles/Alert.module.css";
+import successIcon from "../images/success.png";
+import warningIcon from "../images/warning.png";
+import errorIcon from "../images/error.png";
 
 const alertType = {
   success: "success",

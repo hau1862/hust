@@ -1,4 +1,4 @@
-import spinnerStyle from "../../styles/commons/Spinner.module.css";
+import spinnerStyle from "../styles/Spinner.module.css";
 
 const styleConfig = {
   show: {

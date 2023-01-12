@@ -1,9 +1,15 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
-import CustomerRouter from "./customer/router.js";
-import AdminRouter from "./admin/router";
+import CustomerLayout from "./customer/pages/layout";
+import CustomerHome from "./customer/pages/home";
+import CustomerLogin from "./customer/pages/login";
+import AdminLayout from "./admin/pages/layout";
+import AdminHome from "./admin/pages/home";
+import AdminLogin from "./admin/pages/login";
+import Error from "./commons/pages/error";
 
 const root = createRoot(document.getElementById("root"));
 
@@ -11,8 +17,17 @@ root.render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <AdminRouter />
-        <CustomerRouter />
+        <Route path="/" element={<CustomerLayout />}>
+          <Route index element={<CustomerHome />} />
+          <Route path="login" element={<CustomerLogin />} />
+        </Route>
+
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<AdminHome />} />
+          <Route path="login" element={<AdminLogin />} />
+        </Route>
+
+        <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>

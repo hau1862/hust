@@ -1,6 +1,6 @@
 import { useState, createContext } from "react";
-import Spinner from "./components/commons/Spinner";
-import Alert, { alertType } from "./components/commons/Alert";
+import Spinner from "../commons/components/Spinner";
+import Alert, { alertType } from "../commons/components/Alert";
 
 const AppContext = createContext();
 

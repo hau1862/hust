@@ -1,18 +1,19 @@
 import { serverHost } from "../commons/constants";
 
 export default class Model {
+  static database = "";
+
   constructor(database) {
-    this.database = database;
-    this.url = `${serverHost}/${database}`;
     this.id = 0;
   }
 
-  getAllData() {
-    return {};
+  static getApiBaseUrl() {
+    return `${serverHost}/api/${this.database}`;
   }
 
+
   static findAll() {
-    const api = `${this.url}/all`;
+    const api = `${this.getApiBaseUrl()}/all`;
 
     fetch(api)
       .then((response) => {
@@ -27,7 +28,7 @@ export default class Model {
   }
 
   static findById(id) {
-    const api = `${this.url}}/${id}/show`;
+    const api = `${this.getApiBaseUrl()}}/${id}/show`;
 
     fetch(api)
       .then((response) => {
@@ -41,8 +42,12 @@ export default class Model {
       });
   }
 
+  getAllData() {
+    return {};
+  }
+
   save() {
-    const api = `${this.url}/create`;
+    const api = `${this.constructor.getApiBaseUrl()}/create`;
     const data = this.getAllData();
     const options = {
       method: "POST",
@@ -65,7 +70,7 @@ export default class Model {
   }
 
   update() {
-    const api = `${this.url}/${this.id}/update`;
+    const api = `${this.constructor.getApiBaseUrl()}/${this.id}/update`;
     const data = this.getAllData();
     const options = {
       method: "PATCH",
@@ -88,7 +93,7 @@ export default class Model {
   }
 
   delete() {
-    const api = `${this.url}/${this.id}/delete`;
+    const api = `${this.constructor.getApiBaseUrl()}/${this.id}/delete`;
     const options = {
       method: "DELETE"
     };
