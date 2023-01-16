@@ -11,10 +11,11 @@ const { allowAccessMiddleware } = require("./library");
 
 const app = express();
 
+app.use(allowAccessMiddleware);
+
 routerConfig(app, queryData, checkConnection);
 
 app
-  .use(allowAccessMiddleware)
   .on("close", function () {
     disconnectDatabase();
   })

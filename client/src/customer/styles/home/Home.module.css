@@ -1,0 +1,14 @@
+.home {
+  display: flex;
+  padding: 20px;
+}
+
+.sidebar {
+  min-width: fit-content;
+  width: 200px;
+  margin-right: 20px;
+}
+
+.content {
+  flex-grow: 1;
+}
