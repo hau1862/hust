@@ -1,27 +1,18 @@
 import Model from "./model";
 
 export default class Customer extends Model {
-  constructor() {
-    super("customers");
+  static database = "customers";
+
+  constructor(id, userId, address) {
+    this.id = id;
+    this.userId = userId;
+    this.address = address;
   }
 
-  static findAll() {
-
-  }
-
-  static findById(id) {
-
-  }
-
-  save() {
-
-  }
-
-  update() {
-
-  }
-
-  delete() {
-
+  getAllData() {
+    return {
+      userId: this.userId,
+      address: this.address
+    };
   }
 }

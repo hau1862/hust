@@ -1,27 +1,18 @@
 import Model from "./model";
 
 export default class Invoice extends Model {
-  constructor() {
-    super("invoices");
+  static database = "invoices";
+
+  constructor(id, orderId, totalAmount) {
+    this.id = id;
+    this.orderId = orderId;
+    this.totalAmount = totalAmount;
   }
 
-  static findAll() {
-
-  }
-
-  static findById(id) {
-
-  }
-
-  save() {
-
-  }
-
-  update() {
-
-  }
-
-  delete() {
-
+  getAllData() {
+    return {
+      orderId: this.orderId,
+      totalAmount: this.totalAmount
+    };
   }
 }

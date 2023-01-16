@@ -1,12 +1,14 @@
-const allowDomains = "http://localhost:5500";
-const allowMethods = "GET, POST, PUT, PATCH, DELETE";
-const allowHeaders = "X-Requested-With, Content-Type";
-
 function allowAccessMiddleware(request, response, next) {
-  response.setHeader("Access-Control-Allow-Origin", allowDomains);
-  response.setHeader("Access-Control-Allow-Methods", allowMethods);
-  response.setHeader("Access-Control-Allow-Headers", allowHeaders);
-  response.setHeader("Access-Control-Allow-Credentials", true);
+  const headerConfig = [
+    { key: "Access-Control-Allow-Origin", value: "*" },
+    { key: "Access-Control-Allow-Methods", value: "GET, POST, PUT, PATCH, DELETE" },
+    { key: "Access-Control-Allow-Headers", value: "X-Requested-With, Content-Type" },
+    { key: "Access-Control-Allow-Credentials", value: true }
+  ];
+
+  headerConfig.forEach(function (config) {
+    response.setHeader(config.key, config.value);
+  });
 
   next();
 }

@@ -1,27 +1,20 @@
 import Model from "./model";
 
 export default class Collection extends Model {
-  constructor() {
-    super("collections");
+  static database = "collections";
+
+  constructor(id, name, createdDate, expiredDate) {
+    this.id = id;
+    this.name = name;
+    this.createdDate = createdDate;
+    this.expiredDate = expiredDate;
   }
 
-  static findAll() {
-
-  }
-
-  static findById(id) {
-
-  }
-
-  save() {
-
-  }
-
-  update() {
-
-  }
-
-  delete() {
-
+  getAllData() {
+    return {
+      name: this.name,
+      createdDate: this.createdDate,
+      expiredDate: this.expiredDate
+    };
   }
 }

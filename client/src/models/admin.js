@@ -1,27 +1,16 @@
 import Model from "./model";
 
 export default class Admin extends Model {
-  constructor() {
-    super("admins");
+  static database = "admins";
+
+  constructor(id, userId) {
+    this.id = id;
+    this.userId = userId;
   }
 
-  static findAll() {
-
-  }
-
-  static findById(id) {
-
-  }
-
-  save() {
-
-  }
-
-  update() {
-
-  }
-
-  delete() {
-
+  getAllData() {
+    return {
+      userId: this.userId
+    };
   }
 }

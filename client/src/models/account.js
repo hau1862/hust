@@ -1,27 +1,18 @@
 import Model from "./model";
 
 export default class Account extends Model {
-  constructor() {
-    super("accounts");
+  static database = "accounts";
+
+  constructor(id, username, password) {
+    this.id = id;
+    this.username = username;
+    this.password = password;
   }
 
-  static findAll() {
-
-  }
-
-  static findById(id) {
-
-  }
-
-  save() {
-
-  }
-
-  update() {
-
-  }
-
-  delete() {
-
+  getAllData() {
+    return {
+      username: this.username,
+      password: this.password
+    };
   }
 }
