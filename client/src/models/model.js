@@ -12,41 +12,23 @@ export default class Model {
   }
 
 
-  static findAll() {
+  static async findAll() {
     const api = `${this.getApiBaseUrl()}/all`;
-
-    fetch(api)
-      .then((response) => {
-        return response.json();
-      })
-      .then((responseData) => {
-        console.log(responseData);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    const response = await fetch(api);
+    return await response.json();
   }
 
-  static findById(id) {
+  static async findById(id) {
     const api = `${this.getApiBaseUrl()}}/${id}/show`;
-
-    fetch(api)
-      .then((response) => {
-        return response.json();
-      })
-      .then((responseData) => {
-        console.log(responseData);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    const response = await fetch(api);
+    return await response.json();
   }
 
   getAllData() {
     return {};
   }
 
-  save() {
+  async save() {
     const api = `${this.constructor.getApiBaseUrl()}/create`;
     const data = this.getAllData();
     const options = {
@@ -56,20 +38,11 @@ export default class Model {
       },
       body: JSON.stringify(data)
     };
-
-    fetch(api, options)
-      .then((response) => {
-        return response.json();
-      })
-      .then((responseData) => {
-        console.log(responseData);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    const response = await fetch(api, options);
+    return await response.json();
   }
 
-  update() {
+  async update() {
     const api = `${this.constructor.getApiBaseUrl()}/${this.id}/update`;
     const data = this.getAllData();
     const options = {
@@ -79,34 +52,16 @@ export default class Model {
       },
       body: JSON.stringify(data)
     };
-
-    fetch(api, options)
-      .then((response) => {
-        return response.json();
-      })
-      .then((responseData) => {
-        console.log(responseData);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    const response = await fetch(api, options);
+    return await response.json();
   }
 
-  delete() {
+  async delete() {
     const api = `${this.constructor.getApiBaseUrl()}/${this.id}/delete`;
     const options = {
       method: "DELETE"
     };
-
-    fetch(api, options)
-      .then((response) => {
-        return response.json();
-      })
-      .then((responseData) => {
-        console.log(responseData);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    const response = await fetch(api, options);
+    return await response.json();
   }
 }
