@@ -1,27 +1,16 @@
 import Model from "./model";
 
 export default class Cart extends Model {
-  constructor() {
-    super("carts");
+  static database = "carts";
+
+  constructor(id, userId) {
+    this.id = id;
+    this.userId = userId;
   }
 
-  static findAll() {
-
-  }
-
-  static findById(id) {
-
-  }
-
-  save() {
-
-  }
-
-  update() {
-
-  }
-
-  delete() {
-
+  getAllData() {
+    return {
+      userId: this.userId
+    };
   }
 }

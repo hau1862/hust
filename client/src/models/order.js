@@ -1,27 +1,22 @@
 import Model from "./model";
 
 export default class Order extends Model {
-  constructor() {
-    super("orders");
+  static database = "orders";
+
+  constructor(id, userId, shippingFee, createdDate, modifiedDate) {
+    this.id = id;
+    this.userId = userId;
+    this.shippingFee = shippingFee;
+    this.createdDate = createdDate;
+    this.modifiedDate = modifiedDate;
   }
 
-  static findAll() {
-
-  }
-
-  static findById(id) {
-
-  }
-
-  save() {
-
-  }
-
-  update() {
-
-  }
-
-  delete() {
-
+  getAllData() {
+    return {
+      userId: this.userId,
+      shippingFee: this.shippingFee,
+      createdDate: this.createdDate,
+      modifiedDate: this.modifiedDate
+    };
   }
 }

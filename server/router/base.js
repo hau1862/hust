@@ -1,4 +1,4 @@
-const HttpMethod = {
+const ApiMethod = {
   get: "get",
   post: "post",
   put: "put",
@@ -9,7 +9,7 @@ const routerBasic = {
   all(tableName = "users") {
     return {
       path: `/api/${tableName}/all`,
-      method: HttpMethod.get,
+      method: ApiMethod.get,
       func(request, response, queryData) {
         const queryString = `SELECT * FROM ${tableName}`;
 
@@ -26,7 +26,7 @@ const routerBasic = {
   create(tableName = "users") {
     return {
       path: `/api/${tableName}/create`,
-      method: HttpMethod.post,
+      method: ApiMethod.post,
       func(request, response, queryData) {
         const data = request.body;
         const keys = Object.keys(data);
@@ -48,7 +48,7 @@ const routerBasic = {
   show(tableName = "users") {
     return {
       path: `/api/${tableName}/:id/show`,
-      method: HttpMethod.get,
+      method: ApiMethod.get,
       func(request, response, queryData) {
         const { id } = request.params;
         const queryString = `SELECT * FROM users WHERE id=${id}`;
@@ -66,7 +66,7 @@ const routerBasic = {
   update(tableName = "users") {
     return {
       path: `/api/${tableName}/:id/update`,
-      method: HttpMethod.put,
+      method: ApiMethod.put,
       func(request, response, queryData) {
         const { id } = request.params;
         const data = request.body;
@@ -91,7 +91,7 @@ const routerBasic = {
   delete(tableName = "users") {
     return {
       path: `/api/${tableName}/:id/delete`,
-      method: HttpMethod.delete,
+      method: ApiMethod.delete,
       func(request, response, queryData) {
         const { id } = request.params;
         const queryString = `DELETE FROM ${tableName} WHERE id=${id}`;
@@ -108,32 +108,6 @@ const routerBasic = {
   }
 };
 
-const tableNames = ["accounts", "administrators", "categories", "collections", "customers", "invoices", "orders", "products", "users"];
-
-const routers = tableNames.reduce((accumulate, currentTableName) => {
-  return accumulate.concat([
-    routerBasic.all(currentTableName),
-    routerBasic.create(currentTableName),
-    routerBasic.show(currentTableName),
-    routerBasic.update(currentTableName),
-    routerBasic.delete(currentTableName),
-  ]);
-}, []);
-
-function routerConfig(app, queryData, checkConnection) {
-  routers.forEach((router) => {
-    app[router.method](router.path, (request, response) => {
-      if (checkConnection()) {
-        router.func(request, response, queryData);
-      } else {
-        response.status(400).json({
-          message: "Connect database failure",
-        });
-      }
-    });
-  });
-}
-
 module.exports = {
-  routerConfig,
+  ApiMethod, routerBasic
 };

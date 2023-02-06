@@ -1,27 +1,20 @@
 import Model from "./model";
 
 export default class Product extends Model {
-  constructor() {
-    super("products");
+  static database = "products";
+
+  constructor(id, name, price, imageUrl) {
+    this.id = id;
+    this.name = name;
+    this.price = price;
+    this.imageUrl = imageUrl;
   }
 
-  static findAll() {
-
-  }
-
-  static findById(id) {
-
-  }
-
-  save() {
-
-  }
-
-  update() {
-
-  }
-
-  delete() {
-
+  getAllData() {
+    return {
+      name: this.name,
+      price: this.price,
+      imageUrl: this.imageUrl
+    };
   }
 }

@@ -1,9 +1,9 @@
-import { serverHost } from "../commons/constants";
+import { serverHost } from "../commons/data/constants";
 
 export default class Model {
   static database = "";
 
-  constructor(database) {
+  constructor() {
     this.id = 0;
   }
 

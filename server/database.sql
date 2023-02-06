@@ -44,8 +44,27 @@ create table categories(
 create table collections(
   id int primary key auto_increment,
   name varchar(255) not null,
-  created_data datetime default current_timestamp,
-  expired_data datetime default current_timestamp
+  created_date datetime default current_timestamp,
+  expired_date datetime default current_timestamp
+);
+
+create table carts(
+  id int primary key auto_increment,
+  user_id int not null
+);
+
+create table orders(
+  id int primary key auto_increment,
+  user_id int not null,
+  shipping_fee int default 0,
+  created_date datetime default current_timestamp,
+  modified_date datetime on update current_timestamp
+);
+
+create table invoices(
+  id int primary key auto_increment,
+  order_id int not null,
+  total_amount int not null
 );
 
 create table product_category(
@@ -60,35 +79,16 @@ create table product_collection(
   primary key (product_id, collection_id)
 );
 
-create table carts(
-  id int primary key auto_increment,
-  user_id int not null
-);
-
 create table product_cart(
   product_id int not null,
   cart_id int not null,
   primary key (product_id, cart_id)
 );
 
-create table orders(
-  id int primary key auto_increment,
-  user_id int not null,
-  shipping_fee int default 0,
-  created_date datetime default current_timestamp,
-  modified_date datetime on update current_timestamp
-);
-
 create table product_order(
   product_id int not null,
   order_id int not null,
   primary key (product_id, order_id)
-);
-
-create table invoices(
-  id int primary key auto_increment,
-  order_id int not null,
-  total_amount int not null
 );
 
 alter table users add foreign key (account_id) references accounts(id);
