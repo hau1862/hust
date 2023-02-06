@@ -3,16 +3,20 @@ import Model from "./model";
 export default class Customer extends Model {
   static database = "customers";
 
-  constructor(id, userId, address) {
+  constructor(customerData) {
+    super({});
+    const { id, accountId, address, birthday } = customerData;
     this.id = id;
-    this.userId = userId;
+    this.accountId = accountId;
     this.address = address;
+    this.birthday = birthday;
   }
 
   getAllData() {
     return {
-      userId: this.userId,
-      address: this.address
+      accountId: this.accountId,
+      address: this.address,
+      birthday: this.birthday
     };
   }
 }

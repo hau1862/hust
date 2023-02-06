@@ -3,14 +3,16 @@ import Model from "./model";
 export default class Admin extends Model {
   static database = "admins";
 
-  constructor(id, userId) {
+  constructor(adminData) {
+    super({});
+    const { id, accountId } = adminData;
     this.id = id;
-    this.userId = userId;
+    this.accountId = accountId;
   }
 
   getAllData() {
     return {
-      userId: this.userId
+      accountId: this.accountId
     };
   }
 }

@@ -1,12 +1,7 @@
 .alert {
-  position: absolute;
-  top: 20px;
-  right: 20px;
   border-radius: 16px;
   padding: 12px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: fit-content;
 }
 
 .alertSuccess {
@@ -22,8 +17,8 @@
 }
 
 .alertMessage {
-  display: inline;
-  margin-right: 20px;
+  margin-right: 12px;
+  line-height: 20px;
 }
 
 .alertIcon {

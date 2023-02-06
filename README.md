@@ -12,7 +12,7 @@
 
 ## Run server
 
-    npm run dev
+    npm start
 
 ## Run client
 

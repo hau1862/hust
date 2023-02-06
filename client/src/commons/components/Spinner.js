@@ -13,11 +13,8 @@ export default function Spinner(props) {
   const { loading } = props;
 
   return (
-    <div
-      className={spinnerStyle.spinnerContainer}
-      style={loading ? styleConfig.show : styleConfig.hide}
-    >
-      <div className={spinnerStyle.spinner}></div>
+    <div className={spinnerStyle.spinner} style={loading ? styleConfig.show : styleConfig.hide}>
+      <div className={spinnerStyle.spinnerContent}></div>
     </div>
   );
 }

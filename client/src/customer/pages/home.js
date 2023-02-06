@@ -5,14 +5,14 @@ import Content from "../components/home/Content";
 
 export default function Home() {
   return <div className={homeStyle.home}>
-    <div className={homeStyle.sidebar}>
+    <div className={homeStyle.sidebarContainer}>
       <Sidebar />
     </div>
-    <div className={homeStyle.main}>
-      <div className={homeStyle.slider}>
+    <div className={homeStyle.mainContainer}>
+      <div className={homeStyle.sliderContainer}>
         <Slider />
       </div>
-      <div className={homeStyle.content}>
+      <div className={homeStyle.contentContainer}>
         <Content />
       </div>
     </div>

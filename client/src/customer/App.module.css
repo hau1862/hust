@@ -1,0 +1,21 @@
+.app {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.alertContainer {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  z-index: 3;
+}
+
+.spinnerContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+}
+
+.childrenContainer {}

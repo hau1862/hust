@@ -1,0 +1,19 @@
+{
+  "layout": {},
+  "home": {},
+  "accounts": {
+    "login": {
+      "success": "Login successfully",
+      "empty": "Username and password can't be empty or contain space",
+      "wrong": "Username or password wrong",
+      "error": "Login error"
+    },
+    "register": {
+      "success": "Register successfully",
+      "empty": "Form field value can't be empty or contain space",
+      "wrong": "Username or password wrong",
+      "error": "Login error",
+      "confirmError": "Password confirm not match password"
+    }
+  }
+}

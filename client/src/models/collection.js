@@ -3,7 +3,9 @@ import Model from "./model";
 export default class Collection extends Model {
   static database = "collections";
 
-  constructor(id, name, createdDate, expiredDate) {
+  constructor(collectionData) {
+    super({});
+    const { id, name, createdDate, expiredDate } = collectionData;
     this.id = id;
     this.name = name;
     this.createdDate = createdDate;

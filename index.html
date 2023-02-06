@@ -2,22 +2,26 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Test API</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Test API</title>
 </head>
 
 <body>
-  <script>
-    fetch("http://localhost:8000/api/accounts/all")
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data)
-      })
-  </script>
+	<script>
+		const data = {
+			username: "customer",
+			password: "123456",
+			full_name: "Nguyen Tien Hau",
+		};
+		fetch("http://localhost:8000/api/accounts/6/delete", {
+			method: "DELETE"
+		})
+			.then(async (response) => {
+				console.log(await response.json());
+			})
+	</script>
 </body>
 
 </html>

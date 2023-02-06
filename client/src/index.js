@@ -3,11 +3,13 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
+
 import CustomerLayout from "./customer/pages/layout";
 import CustomerHome from "./customer/pages/home";
-import CustomerLogin from "./customer/pages/login";
-import AllProducts from "./customer/pages/products/index";
-import ShowProduct from "./customer/pages/products/show";
+import CustomerLogin from "./customer/pages/accounts/login";
+import CustomerRegister from "./customer/pages/accounts/register";
+import CustomerAllProducts from "./customer/pages/products/all";
+import CustomerShowProduct from "./customer/pages/products/show";
 
 import AdminLayout from "./admin/pages/layout";
 import AdminHome from "./admin/pages/home";
@@ -23,11 +25,15 @@ root.render(
       <Routes>
         <Route path="/" element={<CustomerLayout />}>
           <Route index element={<CustomerHome />} />
-          <Route path="login" element={<CustomerLogin />} />
+
+          <Route path="accounts">
+            <Route path="login" element={<CustomerLogin />} />
+            <Route path="register" element={<CustomerRegister />} />
+          </Route>
 
           <Route path="products">
-            <Route index element={<AllProducts />} />
-            <Route path=":id/show" element={<ShowProduct />} />
+            <Route index element={<CustomerAllProducts />} />
+            <Route path=":id/show" element={<CustomerShowProduct />} />
           </Route>
         </Route>
 

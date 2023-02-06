@@ -1,49 +1,57 @@
 .header {
   background-color: white;
   height: 100%;
-  padding: 0px 16px;
+  padding: 0px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.logoContainer {}
+.logoLink {
+  text-decoration: none;
+}
 
 .logoImage {
   height: 40px;
 }
 
-.searchContainer {
-  margin: 0px 60px;
-  flex-grow: 1;
-  min-width: 360px;
-}
-
 .searchForm {
   display: flex;
+  border-style: solid;
+  border-color: rgb(240, 240, 240);
+  border-radius: 8px;
+  min-width: fit-content;
+  width: 50%;
+  max-width: 500px;
+  margin: 0px 40px;
 }
 
 .searchInput {
-  flex-grow: 1;
   padding: 8px;
   outline: none;
-  border-color: rgb(240, 240, 240);
-  border-style: solid;
-  border-radius: 8px;
+  border: none;
+  flex-grow: 1;
 }
 
 .searchSubmit {
-  padding: 6px 16px;
-  border-color: rgb(240, 240, 240);
-  border-style: solid;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 8px 16px;
+  border: none;
   color: blue;
   cursor: pointer;
 }
 
-.shortcutContainer {
-  display: flex;
-}
+.shortcutList {}
 
 .shortcutItem {
-  margin: 8px;
+  margin: 0px 4px;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+.shortcutItem:hover {
+  background-color: rgb(240, 240, 240);
 }

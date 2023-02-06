@@ -3,14 +3,16 @@ import Model from "./model";
 export default class Cart extends Model {
   static database = "carts";
 
-  constructor(id, userId) {
+  constructor(cartData) {
+    super({});
+    const { id, accountId } = cartData;
     this.id = id;
-    this.userId = userId;
+    this.accountId = accountId;
   }
 
   getAllData() {
     return {
-      userId: this.userId
+      accountId: this.accountId
     };
   }
 }

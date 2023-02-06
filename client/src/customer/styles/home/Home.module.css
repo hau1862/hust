@@ -2,7 +2,7 @@
   padding: 20px;
 }
 
-.sidebar {
+.sidebarContainer {
   min-width: fit-content;
   width: 200px;
   margin-right: 20px;
@@ -12,14 +12,14 @@
   top: 80px;
 }
 
-.main {
+.mainContainer {
   display: inline-block;
   width: calc(100% - 220px)
 }
 
-.slider {
+.sliderContainer {
   height: 200px;
   margin-bottom: 20px;
 }
 
-.content {}
+.contentContainer {}

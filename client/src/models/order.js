@@ -3,12 +3,12 @@ import Model from "./model";
 export default class Order extends Model {
   static database = "orders";
 
-  constructor(id, userId, shippingFee, createdDate, modifiedDate) {
+  constructor(orderData) {
+    super({});
+    const { id, userId, shippingFee } = orderData;
     this.id = id;
     this.userId = userId;
     this.shippingFee = shippingFee;
-    this.createdDate = createdDate;
-    this.modifiedDate = modifiedDate;
   }
 
   getAllData() {
@@ -16,7 +16,6 @@ export default class Order extends Model {
       userId: this.userId,
       shippingFee: this.shippingFee,
       createdDate: this.createdDate,
-      modifiedDate: this.modifiedDate
     };
   }
 }

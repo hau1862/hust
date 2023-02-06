@@ -1,0 +1,62 @@
+.register {
+  text-align: center;
+  padding: 60px 0px;
+}
+
+.registerForm {
+  display: inline-block;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 0px 16px rgb(120, 120, 120);
+  padding: 28px 40px 32px;
+}
+
+.formHeading {
+  margin: 0px;
+  padding-bottom: 16px;
+  border: 0px solid rgb(160, 160, 160);
+  border-bottom-width: 2px;
+  font-weight: bold;
+  font-size: 32px;
+}
+
+.formGroup {
+  margin: 24px 0px;
+}
+
+.formLabel {
+  padding-left: 4px;
+  display: block;
+  text-align: left;
+  margin-bottom: 4px;
+  font-weight: bold;
+}
+
+.formInput {
+  width: 320px;
+  font-size: 16px;
+  padding: 12px;
+  border: 2px solid rgb(200, 200, 200);
+  border-radius: 12px;
+  outline: none;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.formSubmit {
+  background-color: rgb(75, 75, 255);
+  color: white;
+  padding: 12px 24px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 12px;
+  border-width: 0px;
+}
+
+.login {}
+
+.loginText {
+  margin-right: 4px;
+}

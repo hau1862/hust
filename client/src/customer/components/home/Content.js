@@ -1,5 +1,5 @@
 import contentStyle from "../../styles/home/Content.module.css";
-import { productData } from "../../../commons/data/fake";
+import { productData } from "../../data/fake";
 
 export default function Content() {
   return <div className={contentStyle.content}>
